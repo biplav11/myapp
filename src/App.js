@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import axios from 'axios'
+import React, { useEffect } from 'react'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App() {
+    function getQuotes() {
+        axios.post('https://v1-review-develop-35700.tocp.usaa.com/v1/pc/umbrella-acquisition/quotes',
+            {
+                networth: 20000,
+                effectiveDate: "2018-08-10"
+            }
+        ).then(data => console.log(data.data))
+    }
+    useEffect(() => {
+        getQuotes()
+    }, [])
+    return (
+        <div>
+            Hello
+        </div>
+    )
 }
-
-export default App;
